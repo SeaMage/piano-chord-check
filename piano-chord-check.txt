@@ -145,28 +145,3 @@ public class Homework9 {
         }              
     }
 }
-
-Please enter a musical piano chord 
-in the following format: 
-note, accidental, minor 
-(i.e. F#m)
-
-a#M
-valid chord: A#m
-
-Please enter a musical piano chord 
-in the following format: 
-note, accidental, minor 
-(i.e. F#m)
-
-j#
-non-valid chord format: j#
-
-Please enter a musical piano chord 
-in the following format: 
-note, accidental, minor 
-(i.e. F#m)
-
-b#
-non-existant chord: b#
-
