@@ -1,0 +1,172 @@
+import java.util.Scanner; // Needed for the Scanner class
+
+/**
+ * This program asks the user to input a musical piano chord. 
+ * The program then verifies if the chord is valid and 
+ * displays a message with the result for the user.
+ * Inputs: userInput
+ * Outputs: key, sF, minor
+ * Written by: Matthew Dunlap
+ * Last Date Modified: 04/08/2018
+ */
+public class Homework9 {
+
+    public static void main(String[] args)
+    {
+        String userInput;
+        char key = 0;
+        char sF = 0;
+        char minor = 0;
+        int inputLength;
+        
+        Scanner keyboard = new Scanner(System.in);
+        
+        System.out.println("Please enter a musical piano chord ");
+        System.out.println("in the following format: ");
+        System.out.println("note, accidental, minor ");
+        System.out.println("(i.e. F#m)\n");
+        
+        userInput = keyboard.nextLine();
+        inputLength = userInput.length();
+        
+        if (inputLength == 1) 
+        {
+            key = userInput.charAt(0);
+        }
+        else if (inputLength == 2) 
+        {
+            key = userInput.charAt(0);
+            sF = userInput.charAt(1);
+            switch (sF) {
+                case 109:
+                case 77:
+                    minor = 109;
+                    sF = 0;
+                    break;
+                case 35:
+                    break;
+                case 45:
+                    break;
+                default:
+                    System.out.println("non-valid chord format: "
+                            + key + sF + minor);
+                    System.exit(0);
+            }
+        }
+        else if (inputLength == 3)
+        {                   
+            key = userInput.charAt(0);
+            sF = userInput.charAt(1);
+            minor = userInput.charAt(2);
+            if (minor == 77)
+            {
+                minor = 109;
+            }
+        }              
+        else if (inputLength > 3)
+        {
+            System.out.println("non-valid chord format");
+            System.exit(0);
+        }
+               
+        validChord(key, sF, minor);        
+    }
+    
+    /**
+     * The chordCapitalize method converts a valid 
+     * key input into Capitalized form.
+     * @param key
+     * @return key as capital
+     */
+    
+    public static char chordCapitalize(char key)
+    {
+        if (key == 97)
+        {
+            key = 65;
+        }
+        if (key ==98)
+        {
+            key = 66;
+        }
+        if (key ==99)
+        {
+            key = 67;
+        }
+        if (key == 100)
+        {
+            key = 68;
+        }
+        if (key == 101)
+        {
+            key = 69;
+        }
+        if (key == 102)
+        {
+            key = 70;
+        }
+        if (key == 103)
+        {
+            key = 71;
+        }
+        return key;
+    }
+    
+    /**
+     * The validChord method checks for remaining flaws
+     * in the user input. Then displays appropriate message.
+     * @param key
+     * @param sF
+     * @param minor 
+     */
+    
+    public static void validChord(char key, char sF, char minor)
+    {     
+        if(
+           (key < 65) || 
+           (key > 71 && key < 97) ||
+           (key > 103) ||
+           (minor != 109 && minor != 77 && minor != 0)
+          )
+        {
+            System.out.println("non-valid chord format: " + key + sF + minor);
+        }
+        else if (((key == 66 || key == 98) && sF == 35) ||
+                 ((key == 67 || key == 99) && sF == 45) ||
+                 ((key == 69 || key == 101) && sF == 35) ||
+                 ((key == 70 || key == 102) && sF == 45))
+        {
+            System.out.println("non-existant chord: " + key + sF + minor);
+        }               
+        else
+        {   
+            key = chordCapitalize(key); 
+            System.out.println("valid chord: " + key + sF + minor);
+        }              
+    }
+}
+
+Please enter a musical piano chord 
+in the following format: 
+note, accidental, minor 
+(i.e. F#m)
+
+a#M
+valid chord: A#m
+
+Please enter a musical piano chord 
+in the following format: 
+note, accidental, minor 
+(i.e. F#m)
+
+j#
+non-valid chord format: j#
+
+Please enter a musical piano chord 
+in the following format: 
+note, accidental, minor 
+(i.e. F#m)
+
+b#
+non-existant chord: b#
+
